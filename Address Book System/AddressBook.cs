@@ -24,5 +24,15 @@ namespace Address_Book_System
             return this.ContactList.FindIndex(contact => contact.PhoneNumber.Equals(number));
            
         }
+        //Find Contact Object Index with help of  given FirstName......
+        public int FindByFirstName(string firstName)
+        {
+            return this.ContactList.FindIndex(contact => contact.FirstName.Equals(firstName));
+        }
+        //Delete Contact with help of Index.......
+        public void DeleteContact(int index)
+        {
+            this.ContactList.RemoveAt(index);
+        }
     }
 }
