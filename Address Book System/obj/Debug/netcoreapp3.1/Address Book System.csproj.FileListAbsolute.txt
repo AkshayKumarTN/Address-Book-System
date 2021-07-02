@@ -1,0 +1,13 @@
+C:\Users\Admin\source\repos\Address Book System\Address Book System\bin\Debug\netcoreapp3.1\Address Book System.exe
+C:\Users\Admin\source\repos\Address Book System\Address Book System\bin\Debug\netcoreapp3.1\Address Book System.deps.json
+C:\Users\Admin\source\repos\Address Book System\Address Book System\bin\Debug\netcoreapp3.1\Address Book System.runtimeconfig.json
+C:\Users\Admin\source\repos\Address Book System\Address Book System\bin\Debug\netcoreapp3.1\Address Book System.runtimeconfig.dev.json
+C:\Users\Admin\source\repos\Address Book System\Address Book System\bin\Debug\netcoreapp3.1\Address Book System.dll
+C:\Users\Admin\source\repos\Address Book System\Address Book System\bin\Debug\netcoreapp3.1\Address Book System.pdb
+C:\Users\Admin\source\repos\Address Book System\Address Book System\obj\Debug\netcoreapp3.1\Address Book System.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Address Book System\Address Book System\obj\Debug\netcoreapp3.1\Address Book System.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\Address Book System\Address Book System\obj\Debug\netcoreapp3.1\Address Book System.AssemblyInfo.cs
+C:\Users\Admin\source\repos\Address Book System\Address Book System\obj\Debug\netcoreapp3.1\Address Book System.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Address Book System\Address Book System\obj\Debug\netcoreapp3.1\Address Book System.dll
+C:\Users\Admin\source\repos\Address Book System\Address Book System\obj\Debug\netcoreapp3.1\Address Book System.pdb
+C:\Users\Admin\source\repos\Address Book System\Address Book System\obj\Debug\netcoreapp3.1\Address Book System.genruntimeconfig.cache
