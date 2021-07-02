@@ -18,5 +18,11 @@ namespace Address_Book_System
             // add class objects in list c.....
             this.ContactList.Add(contact);
         }
+        public int FindByPhoneNumber(int number)
+        {
+            // Returns the index of Contact....
+            return this.ContactList.FindIndex(contact => contact.PhoneNumber.Equals(number));
+           
+        }
     }
 }
