@@ -6,6 +6,7 @@ namespace Address_Book_System
 {
     class Contact
     {
+        // Contact details....
         public string FirstName;
         public string LastName;
         public string Address;
