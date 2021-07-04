@@ -86,7 +86,7 @@ namespace Address_Book_System
 
         public static void Read_Contact(Contact contact)
         {
-            // Contact details is Added.....
+            // Persons Contact details is Added.....
             Console.Write("Enter the First Name : ");
             contact.FirstName = Console.ReadLine();
             Console.Write("Enter the Last Name : ");
