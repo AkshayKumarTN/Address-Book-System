@@ -4,13 +4,16 @@ namespace Address_Book_System
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             Console.WriteLine(" Welcome to Address Book Program ");
 
             // Object of AdressBook is Created.....
             AddressBook addressBook = new AddressBook();
+
             bool stop = false;
+            string name;
             while (!stop)
             {
                 // Obtions are Show to User.......
@@ -29,10 +32,15 @@ namespace Address_Book_System
                 {
                     case 1:
                         Contact contact = new Contact();   // New Contact Object is Created ....
+                        Console.Write("Enter the Name of Address Book : ");
+                        name = Console.ReadLine();
                         Read_Contact(contact);             //method is called for input of contact details....
-                        addressBook.Add_Contacts(contact);  // contact details is added to a List...
+                        addressBook.Add_Contacts(contact,name);  // contact details is added to a List...
                         break;
                     case 2:
+                        Console.Write("Enter the Name of Address Book you wish to Work On : ");
+                        name = Console.ReadLine();
+                        
                         //  PhoneNumber of Contact to be Edit is given as input.......
                         Console.Write("Enter the Phone Number of Contact you wish to Edit : ");
                         long phoneNumber = long.Parse(Console.ReadLine());
@@ -44,14 +52,18 @@ namespace Address_Book_System
                         }
                         else
                         {
-                            Contact contact2 = new Contact();
+                            Contact contact2 = new Contact(); 
                             Read_Contact(contact2);
+                            // Updating List and Dictionary After editing......
                             addressBook.ContactList[index] = contact2;
+                            addressBook.ContactMap[name] = contact2;
                             Console.WriteLine("Contact Updated Successfully");
                         }
                         break;
                                         
                     case 3:
+                        Console.Write("Enter the Name of Address Book you wish to Delete : ");
+                        name = Console.ReadLine();
                         //  First Name of Contact to be deleted is given as input.......
                         Console.Write("Enter the First Name of Contact you wish to delete : ");
                         string firstname = Console.ReadLine();
@@ -65,6 +77,7 @@ namespace Address_Book_System
                         {
                             // method to delete the contact is called.....
                             addressBook.DeleteContact(contact_id);
+                            addressBook.ContactMap.Remove(name);
                             Console.WriteLine("Contact Deleted Successfully");
                         }
                         break;
@@ -72,6 +85,7 @@ namespace Address_Book_System
                     case 4:
                         // Number of Contacts is give......(count)...
                         Console.WriteLine("\n Number of Contacts : " + addressBook.ContactList.Count);
+                        Console.WriteLine("Total Contacts in myDict are : " + addressBook.ContactMap.Count);
                         break;
 
                     case 0:
