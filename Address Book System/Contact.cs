@@ -15,5 +15,13 @@ namespace Address_Book_System
         public int Zip;
         public long PhoneNumber;
         public string Email;
+
+        public override bool Equals(object obj)
+        {
+            Contact contact = obj as Contact;
+            if (obj == null)
+                return false;
+            return this.FirstName.Equals(contact.FirstName) && this.LastName.Equals(contact.LastName);
+        }
     }
 }

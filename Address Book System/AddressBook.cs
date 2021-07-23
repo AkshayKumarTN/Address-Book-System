@@ -9,17 +9,17 @@ namespace Address_Book_System
 
         // List for (Contact) class objects is created.....
         public List<Contact> ContactList;
-        public Dictionary<string, Contact> ContactMap;
         public AddressBook()
         {
             this.ContactList = new List<Contact>();
-            ContactMap = new Dictionary<string, Contact>();
         }
-        public void Add_Contacts(Contact contact, string name)
+        public void Add_Contacts(Contact contact)
         {
             // add class objects in list c.....
-            this.ContactList.Add(contact);
-            ContactMap.Add(name, contact);
+            if (this.ContactList.Find(e => e.Equals(contact))!= null)
+                Console.WriteLine("\n The Contact Already Exists! Try Again.");
+            else
+                this.ContactList.Add(contact);
         }
         public int FindByPhoneNumber(int number)
         {
