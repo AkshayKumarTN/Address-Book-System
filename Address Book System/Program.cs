@@ -5,7 +5,12 @@ namespace Address_Book_System
 {
     class Program
     {
+        // Dictionary for Mulyiple AddressBook......
         public static Dictionary<string, AddressBook> ContactMap = new Dictionary<string, AddressBook>();
+        // Dictionary for Contacts which are in same City ......
+        public static Dictionary<string, List<Contact>> CityWiseContacts = new Dictionary<string, List<Contact>>();
+        // Dictionary for Contacts which are in same State......
+        public static Dictionary<string, List<Contact>> StateWiseContacts = new Dictionary<string, List<Contact>>();
         static void Main(string[] args)
         {
             Console.WriteLine(" Welcome to Address Book Program ");
@@ -16,7 +21,7 @@ namespace Address_Book_System
             string name;
             while (alive)
             {
-                Console.WriteLine("\nMenu : \n 1.Add New Address Book \n 2.Work On Existing Address Book \n 0.Exit");
+                Console.WriteLine("\nMenu : \n 1.Add New Address Book \n 2.Work On Existing Address Book \n 3.View Contact By City or State \n 0.Exit");
                 Console.Write("\n Select Options : ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -31,6 +36,9 @@ namespace Address_Book_System
                         name = Console.ReadLine();
                         AddressBook addressBook = ContactMap[name];
                         AddressBookMain(addressBook,name);
+                        break;
+                    case 3:
+                        ViewPersonByCityOrState();
                         break;
                     case 0:
                         alive = false;
@@ -62,6 +70,7 @@ namespace Address_Book_System
                         Contact contact = new Contact();   // New Contact Object is Created ....
                         ReadContact(contact);             //method is called for input of contact details....
                         addressBook.Add_Contacts(contact);  // contact details is added to a List...
+                        AddCityOrStateContacts(contact);   // Add City and State Contacts to City and State Address Book........
                         break;
                     case 2:                        
                         //  PhoneNumber of Contact to be Edit is given as input.......
@@ -135,6 +144,66 @@ namespace Address_Book_System
             contact.PhoneNumber = long.Parse(Console.ReadLine());
             Console.Write("Enter the email address : ");
             contact.Email = Console.ReadLine();
+        }
+        public static void AddCityOrStateContacts(Contact contact)
+        {
+            // Adding City Wise Contacts to City Address Book........
+            if (!CityWiseContacts.ContainsKey(contact.City))
+            {
+                List<Contact> cityContact = new List<Contact>();
+                cityContact.Add(contact);
+                CityWiseContacts.Add(contact.City, cityContact);
+            }
+            else
+            {
+                List<Contact> cityContact=CityWiseContacts[contact.City];
+                cityContact.Add(contact);
+            }
+
+
+            // Adding State Wise Contacts to State Address Book........
+            if (!StateWiseContacts.ContainsKey(contact.State))
+            {
+                List<Contact> stateContact = new List<Contact>();
+                stateContact.Add(contact);
+                StateWiseContacts.Add(contact.State, stateContact);
+            }
+            else
+            {
+                List<Contact> stateContact = StateWiseContacts[contact.State];
+                stateContact.Add(contact);
+            }
+        }
+        public static void ViewPersonByCityOrState()
+        {
+            int choice;
+            Console.WriteLine(" 1.View Person Contact By City \n 2.View Person Contact By State");
+            Console.Write("\n Select Options : ");
+            choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.Write(" Enter the City Name : ");
+                    string city = Console.ReadLine();
+                    List<Contact> cityContact = CityWiseContacts[city];
+                    Console.WriteLine("\n Contacts in the "+city+" City");
+                    foreach (Contact contact in cityContact)
+                    {
+                        Contact.DisplayContact(contact);
+                    }
+                    break;
+                case 2:
+                    Console.Write(" Enter the State Name : ");
+                    string state = Console.ReadLine();
+                    List<Contact> stateContact = StateWiseContacts[state];
+                    Console.WriteLine("\n Contacts in the " + state + " State");
+
+                    foreach (Contact contact in stateContact)
+                    {
+                        Contact.DisplayContact(contact);
+                    }
+                    break;
+            }
         }
     }
 }

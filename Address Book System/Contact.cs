@@ -23,5 +23,9 @@ namespace Address_Book_System
                 return false;
             return this.FirstName.Equals(contact.FirstName) && this.LastName.Equals(contact.LastName);
         }
+        public static void DisplayContact(Contact contact)
+        {
+            Console.WriteLine(" Name : " + contact.FirstName + " " + contact.LastName);
+        }
     }
 }
