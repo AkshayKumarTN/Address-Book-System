@@ -25,7 +25,13 @@ namespace Address_Book_System
         }
         public static void DisplayContact(Contact contact)
         {
-            Console.WriteLine(" Name : " + contact.FirstName + " " + contact.LastName);
+            Console.Write(" [Name] : " + contact.FirstName + " " + contact.LastName);
+            Console.Write("\t[Address] : "+ contact.Address);
+            Console.Write("\t[City Name] : " + contact.City);
+            Console.Write("\t[State Name] : " + contact.State);
+            Console.Write("\t[zip code] : " + contact.Zip);
+            Console.Write("\t[Phone Number] : " + contact.PhoneNumber);
+            Console.Write("\t[Email address] : " + contact.Email+"\n");
         }
     }
 }
