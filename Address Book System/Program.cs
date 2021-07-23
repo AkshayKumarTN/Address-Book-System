@@ -21,7 +21,7 @@ namespace Address_Book_System
             string name;
             while (alive)
             {
-                Console.WriteLine("\nMenu : \n 1.Add New Address Book \n 2.Work On Existing Address Book \n 3.View Contact By City or State \n 0.Exit");
+                Console.WriteLine("\nMenu : \n 1.Add New Address Book \n 2.Work On Existing Address Book \n 3.View Contact By City or State \n 4.Count Number of in City or State \n 0.Exit");
                 Console.Write("\n Select Options : ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -40,6 +40,9 @@ namespace Address_Book_System
                     case 3:
                         ViewPersonByCityOrState();
                         break;
+                    case 4:
+                        CountPersonByCityOrState();
+                        break;
                     case 0:
                         alive = false;
                         break;
@@ -57,7 +60,7 @@ namespace Address_Book_System
                 Console.WriteLine(" 1. Add a new Contact");
                 Console.WriteLine(" 2.Edit Contact ");
                 Console.WriteLine(" 3.Delete Contact ");
-                Console.WriteLine(" 4.Number of Contacts");
+                Console.WriteLine(" 4.Number of Contacts in Address Book : "+ addressBookName);
                 Console.WriteLine(" 0.Exit ");
 
                 // Reads the Option.....
@@ -202,6 +205,28 @@ namespace Address_Book_System
                     {
                         Contact.DisplayContact(contact);
                     }
+                    break;
+            }
+        }
+        public static void CountPersonByCityOrState()
+        {
+            int choice;
+            Console.WriteLine(" 1.Count Number of Contacts in City \n 2.Count Number of Contacts in State");
+            Console.Write("\n Select Options : ");
+            choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.Write(" Enter the City Name : ");
+                    string city = Console.ReadLine();
+                    List<Contact> cityContact = CityWiseContacts[city];
+                    Console.WriteLine("\n Number of Contacts in the " + city + " City : "+cityContact.Count);
+                    break;
+                case 2:
+                    Console.Write(" Enter the State Name : ");
+                    string state = Console.ReadLine();
+                    List<Contact> stateContact = StateWiseContacts[state];
+                    Console.WriteLine("\n Number of Contacts in the " + state + " State : "+stateContact.Count);
                     break;
             }
         }
