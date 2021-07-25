@@ -45,5 +45,22 @@ namespace Address_Book_System
             return this.ContactList.OrderBy(contact => contact.FirstName).ToList();
         }
 
+        // Sorting Entries By City.............
+        public List<Contact> SortByCity()
+        {
+            return this.ContactList.OrderBy(contact => contact.City).ToList();
+        }
+        // Sorting Entries By State.............
+        public List<Contact> SortByState()
+        {
+            return this.ContactList.OrderBy(contact => contact.State).ToList();
+        }
+
+        // Sorting Entries By Zip.............
+        public List<Contact> SortByZip()
+        {
+            return this.ContactList.OrderBy(contact => contact.Zip).ToList();
+        }
+
     }
 }
