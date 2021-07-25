@@ -21,7 +21,7 @@ namespace Address_Book_System
             string name;
             while (alive)
             {
-                Console.WriteLine("\nMenu : \n 1.Add New Address Book \n 2.Work On Existing Address Book \n 3.View Contact By City or State \n 4.Count Number of in City or State \n 0.Exit");
+                Console.WriteLine("\nMenu : \n 1.Add New Address Book \n 2.Work On Existing Address Book \n 3.View Contact By City or State \n 4.Count Number of in City or State \n 5.Save and Exit \n 0.Exit");
                 Console.Write("\n Select Options : ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -42,6 +42,12 @@ namespace Address_Book_System
                         break;
                     case 4:
                         CountPersonByCityOrState();
+                        break;
+                    case 5:
+                        foreach (KeyValuePair<string, AddressBook> kvp in ContactMap)
+                        {
+                            FileReadWrite.WriteToFile(kvp.Key, kvp.Value);
+                        }
                         break;
                     case 0:
                         alive = false;
