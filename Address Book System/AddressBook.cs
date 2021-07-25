@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Address_Book_System
@@ -37,6 +38,12 @@ namespace Address_Book_System
         {
             this.ContactList.RemoveAt(index);
         }
-        
+
+        // Sorting Entries By First Name.............
+        public List<Contact> SortByFirstName()
+        {
+            return this.ContactList.OrderBy(contact => contact.FirstName).ToList();
+        }
+
     }
 }

@@ -33,5 +33,9 @@ namespace Address_Book_System
             Console.Write("\t[Phone Number] : " + contact.PhoneNumber);
             Console.Write("\t[Email address] : " + contact.Email+"\n");
         }
+        public override string ToString()
+        {
+            return $"Name : {FirstName} {LastName} \nAddress : {Address} \nCity : {City} \nState : {State} \nZip : {Zip} \nPhone : {PhoneNumber} \nEmail : {Email}";
+        }
     }
 }
