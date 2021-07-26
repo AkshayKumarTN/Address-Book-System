@@ -8,24 +8,24 @@ namespace Address_Book_System
 {
     class FileReadWrite
     {
-        public static AddressBook ReadFromFile(string bookName)
+        public static void ReadFromFile(string bookName)
         {
-            AddressBook addressBook;
-            using (Stream stream = File.Open($"C://Users//Admin//source//repos//Address Book System//Address Book System//Binary//{bookName}.txt", FileMode.Open))
-            {
-                BinaryFormatter bin = new BinaryFormatter();
-                addressBook = (AddressBook)bin.Deserialize(stream);
-            }
-            return addressBook;
+            string path = $"C://Users//Admin//source//repos//Address Book System//Address Book System//Binary//{bookName}.txt";
+            string text = File.ReadAllText(path);
+            Console.WriteLine(text);
         }
         public static void WriteToFile(string bookName, AddressBook addressBook)
         {
             try
             {
                 string path = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//Binary//{bookName}.txt");
-                FileStream stream = File.OpenWrite(path);
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(stream, addressBook.ContactList[0]);
+                StreamWriter stream = new StreamWriter(path);
+                foreach(Contact list in addressBook.ContactList)
+                {
+                    string line = "Name:" + list.FirstName + " " + list.LastName + " Address:" + list.Address + " City:" + list.City + " State:" + list.State + " Zipcode:" + list.Zip + " Ph.No:" + list.PhoneNumber;
+                    stream.WriteLine(line);
+                }
+                stream.Close();
             }
 
             catch (Exception e)
