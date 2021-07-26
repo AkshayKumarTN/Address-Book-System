@@ -46,7 +46,7 @@ namespace Address_Book_System
                     case 5:
                         foreach (KeyValuePair<string, AddressBook> kvp in ContactMap)
                         {
-                            FileReadWrite.WriteToFile(kvp.Key, kvp.Value);
+                            FileReadWrite.WriteIntoCSVFile(kvp.Key, kvp.Value);
                         }
                         break;
                     case 6:
