@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
@@ -38,8 +39,15 @@ namespace Address_Book_System
 
         public static void WriteIntoCSVFile(string bookName, AddressBook addressBook)
         {
-            string path = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//{bookName}.csv");
+            
+            string addressBookNamespath = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//AddressBookNames.txt");
+            using (StreamWriter stream = File.AppendText(addressBookNamespath))
+            {
+                stream.Write(bookName + ",");
+            }
 
+
+            string path = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//{bookName}.csv");
             using (StreamWriter writer = new StreamWriter(path))
             {
                 using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
@@ -51,20 +59,26 @@ namespace Address_Book_System
 
         public static Dictionary<string, AddressBook> ReadFromCSVFile()
         {
-            string bookName = "Friends";
-            string path = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//{bookName}.csv");
-
-            //read all the file from the list
             Dictionary<string, AddressBook> ContactMap = new Dictionary<string, AddressBook>();
-            using (StreamReader reader =new StreamReader(path))
+            string addressBookNamespath = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//AddressBookNames.txt");
+            string text = File.ReadAllText(addressBookNamespath);
+            string[] addressBookNames = text.Split(',');
+            Console.WriteLine("Address Book Names ");
+            foreach (string bookName in addressBookNames.Take((addressBookNames.Length)-1))
             {
-                using(var csvReader = new CsvReader(reader,CultureInfo.InvariantCulture))
+                Console.WriteLine(bookName);
+                string path = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//{bookName}.csv");
+                //read all the file from the list
+                using (StreamReader reader = new StreamReader(path))
                 {
-                    AddressBook addressBook = new AddressBook();
-                    csvReader.Read();
-                    var result = csvReader.GetRecord<Contact>();
-                    addressBook.ContactList.Add(result);
-                    ContactMap[bookName] = addressBook;
+                    using (var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
+                    {
+                        AddressBook addressBook = new AddressBook();
+                        csvReader.Read();
+                        var result = csvReader.GetRecord<Contact>();
+                        addressBook.ContactList.Add(result);
+                        ContactMap[bookName] = addressBook;
+                    }
                 }
             }
             return ContactMap;
