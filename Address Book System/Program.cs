@@ -50,9 +50,7 @@ namespace Address_Book_System
                         }
                         break;
                     case 6:
-                        Console.Write("Enter the Name of Address Book you wish to Read : ");
-                        name = Console.ReadLine();
-                        FileReadWrite.ReadFromFile(name);
+                        ContactMap = FileReadWrite.ReadFromCSVFile();
                         break;
                     case 0:
                         alive = false;

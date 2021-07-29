@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Address_Book_System
 {
-    class FileReadWrite
+    class FileReadWrite 
     {
         public static void ReadFromFile(string bookName)
         {
@@ -44,19 +44,30 @@ namespace Address_Book_System
             {
                 using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
-                    csvWriter.WriteField("DictionaryName : "+bookName);
-                    csvWriter.WriteHeader<Contact>();
-                    csvWriter.NextRecord();
-
-                    foreach (var l in addressBook.ContactList)
-                    {
-                        csvWriter.WriteField(l);
-                        csvWriter.NextRecord();
-                    }
+                    csvWriter.WriteRecords(addressBook.ContactList);
                 }
             }
         }
-       
 
+        public static Dictionary<string, AddressBook> ReadFromCSVFile()
+        {
+            string bookName = "Friends";
+            string path = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//{bookName}.csv");
+
+            //read all the file from the list
+            Dictionary<string, AddressBook> ContactMap = new Dictionary<string, AddressBook>();
+            using (StreamReader reader =new StreamReader(path))
+            {
+                using(var csvReader = new CsvReader(reader,CultureInfo.InvariantCulture))
+                {
+                    AddressBook addressBook = new AddressBook();
+                    csvReader.Read();
+                    var result = csvReader.GetRecord<Contact>();
+                    addressBook.ContactList.Add(result);
+                    ContactMap[bookName] = addressBook;
+                }
+            }
+            return ContactMap;
+        }
     }
 }

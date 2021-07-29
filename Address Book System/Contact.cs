@@ -4,17 +4,17 @@ using System.Text;
 
 namespace Address_Book_System
 {
-    class Contact
+    public class Contact
     {
         // Contact details....
-        public string FirstName;
-        public string LastName;
-        public string Address;
-        public string City;
-        public string State;
-        public int Zip;
-        public long PhoneNumber;
-        public string Email;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public int Zip { get; set; }
+        public long PhoneNumber { get; set; }
+        public string Email { get; set; }
 
         public override bool Equals(object obj)
         {

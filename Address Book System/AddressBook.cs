@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Address_Book_System
 {
-    class AddressBook
+    public class AddressBook
     {
 
         // List for (Contact) class objects is created.....
