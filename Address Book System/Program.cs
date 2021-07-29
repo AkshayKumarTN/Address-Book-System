@@ -46,24 +46,14 @@ namespace Address_Book_System
                         CountPersonByCityOrState();
                         break;
                     case 5:
-                        foreach (KeyValuePair<string, AddressBook> kvp in ContactMap)
-                        {
-                            FileReadWrite.WriteIntoCSVFile(kvp.Key, kvp.Value);
-                        }
+                        FileReadWrite.WriteIntoJsonFile(ContactMap);
                         break;
                     case 6:
-                        ContactMap = FileReadWrite.ReadFromCSVFile();
+                        ContactMap = FileReadWrite.ReadFromJsonFile();
                         break;
                     case 7:
                         Console.WriteLine("\nTotal Number of Address Book in myDict are : " + ContactMap.Count);
-                        string addressBookNamespath = ($"C://Users//Admin//source//repos//Address Book System//Address Book System//CSVFile//AddressBookNames.txt");
-                        string text = File.ReadAllText(addressBookNamespath);
-                        string[] addressBookNames = text.Split(',');
-                        Console.WriteLine("Address Book Names");
-                        foreach (string bookName in addressBookNames.Take((addressBookNames.Length) - 1))
-                        {
-                            Console.WriteLine(bookName);
-                        }
+                        
                         break;
                     case 0:
                         alive = false;

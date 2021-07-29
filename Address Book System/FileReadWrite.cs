@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -82,6 +83,19 @@ namespace Address_Book_System
                 }
             }
             return ContactMap;
+        }
+
+        public static Dictionary<string, AddressBook> ReadFromJsonFile()
+        {
+            string jsonFile = @"C:\Users\Admin\source\repos\Address Book System\Address Book System\JSONFile\ContactDetails.json";
+            Dictionary<string, AddressBook> details = JsonConvert.DeserializeObject< Dictionary<string, AddressBook>>(File.ReadAllText(jsonFile));
+            return details;
+        }
+
+        public static void WriteIntoJsonFile(Dictionary<string, AddressBook> contactmap)
+        {
+            string jsonFile = @"C:\Users\Admin\source\repos\Address Book System\Address Book System\JSONFile\ContactDetails.json";
+            File.WriteAllText(jsonFile, JsonConvert.SerializeObject(contactmap));
         }
     }
 }
